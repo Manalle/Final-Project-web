@@ -2,92 +2,77 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     margin: 0;
-    padding: 20px;
+    padding: 30px 60px; 
     color: #111111;
 }
 
-/* --- BARRE DE NAVIGATION --- */
 p:first-of-type {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    padding: 15px 50px;
-    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee; 
 }
+
 
 p:first-of-type strong {
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 18px;
+    margin-right: 50px; 
 }
 
-a {
+
+p:first-of-type a {
     text-decoration: none;
-    color: #111111;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 13px;
-    margin: 0 15px;
-    padding: 5px;
+    color: #555555;
+    margin-right: 20px;
 }
 
-a:hover {
+p:first-of-type a:hover {
     color: #b85c5c;
 }
 
-/* --- GRANDE PHOTO A DROITE --- */
 img {
     float: right;
-    width: 50%; /* Elle prend la moitié de l'écran */
-    max-height: 450px;
-    object-fit: contain; /* Conserve les proportions sans déformer */
-    margin-left: 30px;
-    margin-right: 50px;
+    width: 380px;
+    margin-left: 40px;
 }
 
-/* --- TEXTES ET TITRES A GAUCHE --- */
+
 h1 {
+    color: #111111;
     text-align: left;
-    font-size: 42px;
-    margin-top: 60px;
-    margin-left: 50px;
-    font-weight: normal;
+    font-size: 38px;
+    margin-top: 20px;
 }
 
 p {
+    font-size: 16px;
     text-align: left;
-    font-size: 15px;
-    color: #555555;
-    max-width: 38%; /* S'aligne parfaitement à côté de la grande image */
-    margin-left: 50px;
+    color: #444444;
     line-height: 1.6;
+    max-width: 500px; 
 }
 
-/* --- LISTE EN DESSOUS --- */
 h2 {
+    color: #111111;
     text-align: left;
-    margin-left: 50px;
-    margin-top: 40px;
-    clear: both; /* Place la liste en dessous de la grande image */
+    clear: both;
+    padding-top: 40px;
 }
 
 ul {
     text-align: left;
-    margin-left: 50px;
-    padding-left: 20px;
     line-height: 1.8;
 }
 
 .shop-btn {
     text-decoration: none;
+    color: #ffffff ;
+    background-color: #b83b30;
+    padding: 12px 24px;
+    border-radius: 4px;
     display: inline-block;
-    color: white;
-    background-color: #b83b30; /* Couleur rouge/brique chic comme ton image exemple */
-    padding: 12px 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+.shop-btn:hover {
+    background-color: #111111;
 }
