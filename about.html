@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Glow Cosmetics</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <!-- Barre de Navigation -->
+    <header class="navbar">
+        <div class="brand-info">
+            <a href="index.html" class="logo-link">
+                <img src="images/logowebsite.png" alt="Glow Cosmetics Logo" class="nav-logo">
+                <span class="brand-name">Glow Cosmetics</span>
+            </a>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a> 
+            <a href="products.html">Products</a>
+            <a href="about.html" class="active">About Us</a>
+        </nav>
+
+        <div class="auth-links">
+            <a href="login.html" class="login-btn">Log In</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </header>
+
+    <main class="about-container">
+        <!-- Section Présentation & Avatars de l'Équipe -->
+        <section class="about-hero">
+            <h1>About Glow Cosmetics</h1>
+            <p class="about-description">
+                Welcome to Glow Cosmetics! Created as part of our Web Development Final Project, 
+                our mission is to deliver high-quality, organic, and cruelty-free beauty products.
+            </p>
+
+            <div class="team-avatars">
+                <div class="avatar-card">
+                    <img src="images/avatar1.png" alt="Team Member 1" class="avatar-img">
+                    <h3>Manal OUMLIL</h3>
+                    <p>Co-Founder & Full-Stack Developer</p>
+                </div>
+                <div class="avatar-card">
+                    <img src="images/avatar2.png" alt="Team Member 2" class="avatar-img">
+                    <h3>[Prénom Binôme]</h3>
+                    <p>Co-Founder & Full-Stack Developer</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Google Maps API -->
+        <section class="map-section">
+            <h2>Visit Our Flagship Store</h2>
+            <p>Find us at our boutique location in Paris:</p>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.499797042523!2d2.3278273!3d48.8677611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e332822187f%3A0x6a13d78c3b4f620!2sPlace%20Vend%C3%B4me%2C%2075001%20Paris!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" 
+                    width="100%" 
+                    height="350" 
+                    style="border:0; border-radius: 8px;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Section Infinite Scroll (Avis & Galerie supplémentaires) -->
+        <!-- Section Community Wall (Version Statique sans Scroll) -->
+<section class="infinite-scroll-section">
+    <h2>Community Showcase</h2>
+    <p class="section-subtitle">Discover our beauty community looks!</p>
+    
+    <div id="infinite-container" class="infinite-grid">
+        <!-- Les 6 cartes s'affichent proprement ici -->
+    </div>
+</section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/about.js"></script>
+</body>
+</html>
