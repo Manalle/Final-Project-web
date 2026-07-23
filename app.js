@@ -41,6 +41,13 @@ function money(value) {
   return '$' + Number(value).toFixed(2);
 }
 
+// Format the review count like Sephora: 17600 -> "17.6K", 326 -> "326".
+function reviewCount(n) {
+  n = Number(n);
+  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+
 // How many items are currently in the bag (used in the top bar).
 async function bagCount() {
   const [rows] = await pool.query('SELECT COALESCE(SUM(Quantity), 0) AS n FROM Cart');
@@ -161,6 +168,13 @@ function renderCard(p) {
   const badge = p.Badge
     ? `<div class="badges"><span class="badge">${esc(p.Badge)}</span></div>`
     : '';
+  const rating = p.Rating
+    ? `
+        <div class="rating" title="${p.Rating} out of 5">
+          <span class="stars"><span class="stars-fill" style="width:${(Number(p.Rating) / 5) * 100}%"></span></span>
+          <span class="reviews">${reviewCount(p.Reviews)}</span>
+        </div>`
+    : '';
   return `
     <div class="carte">
       <div class="image-produit">
@@ -170,7 +184,7 @@ function renderCard(p) {
       </div>
       <div class="infos">
         <p class="marque">${esc(p.Brand)}</p>
-        <p class="nom">${esc(p.Name)}</p>
+        <p class="nom">${esc(p.Name)}</p>${rating}
         <p class="prix">${money(p.Price)}</p>
         <form method="POST" action="/cart/add">
           <input type="hidden" name="id" value="${p.Id}">
