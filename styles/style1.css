@@ -1,40 +1,149 @@
+/* ==========================================================================
+   PALETTE — harmonisée avec la page d'accueil (Glow Cosmetics)
+   ========================================================================== */
+:root {
+  --accent:  #b83b30;   /* rouge terracotta : boutons, prix, badges, cœur */
+  --dark:    #111111;   /* presque noir : titres, texte, hover */
+  --border:  #eeeeee;   /* liseré clair */
+  --muted:   #666666;   /* texte secondaire */
+  --bg-soft: #fafafa;   /* fond très clair (total du sac, en-têtes) */
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
+  color: var(--dark);
+}
+
+/* ==========================================================================
+   En-tête de la page boutique
+   ========================================================================== */
+.shop-header {
   text-align: center;
-  margin: 40px;
+  margin: 10px 0 40px 0;
 }
 
-h1 {
-  color: rgb(16, 16, 80);
+.breadcrumb {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
 
-/* Grille des cartes produits */
+.shop-header h1 {
+  text-align: center;
+  font-size: 34px;
+  color: var(--dark);
+  margin: 0 0 8px 0;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 6px 0;
+}
+
+.results-count {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 6px 0 0 0;
+}
+
+/* ==========================================================================
+   Barre "Mes favoris" (en haut de la page produits)
+   ========================================================================== */
+.favorites-bar {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.favorites-bar h2 {
+  font-size: 18px;
+  color: var(--dark);
+  margin: 0 0 14px 0;
+}
+
+.fav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.fav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.fav-item img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.fav-item-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.fav-item-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.fav-item-price {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.fav-empty {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Grille des cartes produits
+   ========================================================================== */
 .liste-produits {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .carte {
   width: 240px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   padding: 16px;
-  background-color: #fff2fb;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   text-align: left;
-  transition: transform 0.8s, box-shadow 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .carte:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Image + badges */
+/* Image + badges + cœur */
 .image-produit {
   position: relative;
   text-align: center;
@@ -53,15 +162,47 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  z-index: 2;
 }
 
 .badge {
-  background-color: black;
-  color: white;
+  background-color: var(--accent);
+  color: #ffffff;
   font-size: 10px;
   font-weight: bold;
   padding: 3px 8px;
   border-radius: 3px;
+  text-transform: uppercase;
+}
+
+/* Bouton favori (cœur) en haut à droite de l'image */
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.fav-btn:hover {
+  transform: scale(1.15);
+  background: #ffffff;
+}
+
+.fav-btn.is-fav {
+  border-color: var(--accent);
 }
 
 /* Infos produit */
@@ -72,77 +213,122 @@ h1 {
 .marque {
   font-weight: bold;
   font-size: 14px;
+  color: var(--dark);
   margin: 4px 0;
 }
 
 .nom {
   font-size: 14px;
-  color: #333333;
+  color: var(--muted);
   margin: 6px 0;
   min-height: 40px;
+}
+
+/* Note (étoiles) + nombre d'avis */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 4px 0;
+}
+
+.stars {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  color: #dddddd;            /* étoiles vides (gris clair) */
+}
+
+.stars::before {
+  content: "★★★★★";
+}
+
+.stars-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--dark);        /* étoiles pleines (noir) */
+}
+
+.stars-fill::before {
+  content: "★★★★★";
+}
+
+.reviews {
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .prix {
   font-weight: bold;
   font-size: 16px;
-  margin-top: 8px;
+  color: var(--accent);
+  margin: 8px 0 0 0;
 }
 
-/* Bouton retour */
+/* ==========================================================================
+   Boutons
+   ========================================================================== */
+/* Liens-boutons (retour, "Continue shopping") — scopés pour ne PAS toucher la navbar */
 .retour {
-  margin-top: 40px;
+  margin: 40px 0;
+  text-align: center;
 }
 
-a {
+.retour a,
+.bag-actions a {
   text-decoration: none;
-  color: white;
-  background-color: darkblue;
+  color: #ffffff;
+  background-color: var(--accent);
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.2s ease;
 }
 
-a:hover {
-  background-color: green;
+.retour a:hover,
+.bag-actions a:hover {
+  background-color: var(--dark);
 }
 
-/* Barre du haut (navigation + sac) */
-.topbar {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-/* Boutons dans les formulaires (Add to bag, Remove...) */
+/* Boutons de formulaire (Add to bag, Remove...) */
 .btn-add,
 .btn-remove {
   margin-top: 10px;
   padding: 8px 16px;
   border: none;
-  border-radius: 5px;
-  color: white;
+  border-radius: 4px;
+  color: #ffffff;
   font-size: 13px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .btn-add {
-  background-color: darkblue;
+  background-color: var(--accent);
   width: 100%;
 }
 
 .btn-add:hover {
-  background-color: green;
+  background-color: var(--dark);
 }
 
 .btn-remove {
-  background-color: #b00020;
+  background-color: var(--dark);
 }
 
 .btn-remove:hover {
-  background-color: #7a0016;
+  background-color: var(--accent);
 }
 
-/* Tableau du sac */
+/* ==========================================================================
+   Tableau du sac
+   ========================================================================== */
 .bag-table {
   margin: 30px auto;
   border-collapse: collapse;
@@ -151,18 +337,33 @@ a:hover {
 
 .bag-table th,
 .bag-table td {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   padding: 10px 14px;
   text-align: center;
+}
+
+.bag-table th {
+  background-color: var(--bg-soft);
+  color: var(--dark);
 }
 
 .bag-table .bag-name {
   text-align: left;
 }
 
+/* Vignette de l'article dans le sac */
+.bag-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
 .bag-table .total-row td {
   font-weight: bold;
-  background-color: #fff2fb;
+  background-color: var(--bg-soft);
 }
 
 .bag-actions {
