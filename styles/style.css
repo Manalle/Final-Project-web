@@ -16,12 +16,27 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eeeeee;
 }
 
-/* Nom de la marque */
+/* Alignement du Logo et du Nom */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.nav-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%; /* Macaron circulaire parfait */
+    object-fit: cover;
+    border: 1px solid #eeeeee;
+}
+
 .brand-name {
     font-size: 22px;
     font-weight: bold;
@@ -59,8 +74,10 @@ body {
     transition: color 0.2s ease;
 }
 
-.login-btn:hover {
+.login-btn:hover,
+.login-btn.active-btn {
     color: #b83b30;
+    font-weight: bold;
 }
 
 .register-btn {
@@ -79,56 +96,63 @@ body {
 }
 
 /* ==========================================================================
-   3. SECTION PRINCIPALE (Hero Section : Texte à Gauche / Image à Droite)
+   3. SECTION PRINCIPALE (Hero Section : Texte à Gauche / Grande Image à Droite)
    ========================================================================== */
 .hero-container {
     display: flex;
-    align-items: center;
+    align-items: stretch; /* Force l'image et le texte à avoir la même hauteur */
     justify-content: space-between;
     gap: 50px;
-    /* Involontairement ou selon la structure HTML, ceci garantit que le bloc image est à droite */
-    flex-direction: row-reverse; 
+    min-height: 480px;    /* Imposant et moderne */
+    margin-bottom: 80px;
+    flex-direction: row-reverse; /* Place l'image à droite visuellement */
 }
 
-/* Colonne Droite : L'Image de Huda Beauty */
+/* Colonne Droite : Bloc de la Grande Image */
 .hero-image-wrapper {
-    flex: 0 0 380px; /* Conserve une largeur fixe de 380px */
-    display: flex;
-    justify-content: flex-end;
+    flex: 1;             /* Occupe 50% de la largeur */
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .hero-img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;   /* Remplit 100% de la section sans déformer */
+    object-position: center;
+    display: block;
 }
 
-/* Colonne Gauche : Titre et Description */
+/* Colonne Gauche : Titre, Paragraphe et Boutons */
 .hero-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre le texte verticalement par rapport à la photo */
 }
 
 h1 {
     color: #111111;
-    font-size: 38px;
+    font-size: 42px;
     margin-top: 0;
     margin-bottom: 20px;
     text-align: left;
+    line-height: 1.2;
 }
 
 .description {
-    font-size: 16px;
+    font-size: 17px;
     color: #444444;
-    line-height: 1.6;
-    margin-bottom: 30px;
+    line-height: 1.7;
+    margin-bottom: 35px;
     max-width: 550px;
     text-align: left;
 }
 
-/* ==========================================================================
-   4. BOUTONS D'ACTION (Shop Now & Download Catalog)
-   ========================================================================== */
+/* Boutons d'Action (Shop Now & Download Catalog) */
 .action-buttons {
     display: flex;
     gap: 15px;
@@ -138,7 +162,7 @@ h1 {
     text-decoration: none;
     color: #ffffff;
     background-color: #b83b30;
-    padding: 12px 24px;
+    padding: 14px 28px;
     border-radius: 4px;
     font-weight: bold;
     display: inline-block;
@@ -154,7 +178,7 @@ h1 {
     color: #111111;
     background-color: transparent;
     border: 1px solid #111111;
-    padding: 11px 20px;
+    padding: 13px 24px;
     border-radius: 4px;
     font-weight: bold;
     display: inline-block;
@@ -167,148 +191,7 @@ h1 {
 }
 
 /* ==========================================================================
-   5. RÈGLES GÉNÉRALES
-   ========================================================================== */
-h2 {
-    color: #111111;
-    text-align: left;
-    clear: both;
-    padding-top: 40px;
-}
-
-ul {
-    text-align: left;
-    line-height: 1.8;
-}
-
-/* ==========================================================================
-   6. FORMULAIRES D'AUTHENTIFICATION (Register & Login)
-   ========================================================================== */
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
-}
-
-.auth-card {
-    background-color: #ffffff;
-    border: 1px solid #eeeeee;
-    padding: 40px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 480px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.auth-card h2 {
-    font-size: 28px;
-    margin: 0 0 5px 0;
-    padding-top: 0;
-    text-align: center;
-}
-
-.auth-subtitle {
-    text-align: center;
-    color: #666666;
-    margin-bottom: 25px;
-    font-size: 14px;
-}
-
-/* Ligne double champ (First Name + Last Name) */
-.form-row {
-    display: flex;
-    gap: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 18px;
-    flex: 1;
-}
-
-.form-group label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 6px;
-    color: #111111;
-}
-
-.form-group input {
-    padding: 12px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s ease;
-}
-
-.form-group input:focus {
-    border-color: #b83b30;
-}
-
-.password-hint {
-    font-size: 11px;
-    color: #777777;
-    margin-top: 4px;
-}
-
-/* Message d'erreur */
-.error-msg {
-    background-color: #fde8e8;
-    color: #b83b30;
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 13px;
-    margin-bottom: 15px;
-    border: 1px solid #f8b4b4;
-    text-align: center;
-}
-
-/* Bouton de soumission */
-.submit-btn {
-    width: 100%;
-    background-color: #b83b30;
-    color: #ffffff;
-    border: none;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.2s ease;
-}
-
-.submit-btn:hover {
-    background-color: #111111;
-}
-
-/* Pied du formulaire */
-.auth-footer {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 20px;
-    color: #666666;
-}
-
-.auth-footer a {
-    color: #b83b30;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.auth-footer a:hover {
-    text-decoration: underline;
-}
-.login-btn.active-btn {
-    color: #b83b30;
-    font-weight: bold;
-}
-
-/* ==========================================================================
-   SECTION BADGES DE CONFIANCE
+   4. BADGES DE CONFIANCE (Trust Features)
    ========================================================================== */
 .trust-features {
     display: flex;
@@ -344,7 +227,7 @@ ul {
 }
 
 /* ==========================================================================
-   SECTION PRODUITS POPULAIRES (Best Sellers)
+   5. SECTION PRODUITS POPULAIRES (Best Sellers)
    ========================================================================== */
 .home-products-section {
     margin-bottom: 80px;
@@ -432,7 +315,7 @@ ul {
 }
 
 /* ==========================================================================
-   BANNIÈRE PROMOTIONNELLE
+   6. BANNIÈRE PROMOTIONNELLE
    ========================================================================== */
 .promo-banner {
     background-color: #111111;
@@ -467,7 +350,125 @@ ul {
 }
 
 /* ==========================================================================
-   FOOTER (PIED DE PAGE)
+   7. FORMULAIRES D'AUTHENTIFICATION (Register & Login)
+   ========================================================================== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.auth-card h2 {
+    font-size: 28px;
+    margin: 0 0 5px 0;
+    padding-top: 0;
+    text-align: center;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #666666;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #111111;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #b83b30;
+}
+
+.password-hint {
+    font-size: 11px;
+    color: #777777;
+    margin-top: 4px;
+}
+
+.error-msg {
+    background-color: #fde8e8;
+    color: #b83b30;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #f8b4b4;
+    text-align: center;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #b83b30;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #111111;
+}
+
+.auth-footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.auth-footer a {
+    color: #b83b30;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   8. FOOTER (Pied de page) & RÈGLES DIVERSES
    ========================================================================== */
 .main-footer {
     border-top: 1px solid #eeeeee;
@@ -512,18 +513,13 @@ ul {
     color: #888888;
 }
 
-/* Alignement du Logo et du Nom */
-.logo-link {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Espace entre le logo et le texte */
-    text-decoration: none;
+h2 {
+    color: #111111;
+    text-align: left;
+    clear: both;
 }
 
-.nav-logo {
-    width: 42px;           /* Largeur fixe */
-    height: 42px;          /* Hauteur fixe égale à la largeur */
-    border-radius: 50%;    /* Transforme le carré en un CERCLE parfait */
-    object-fit: cover;     /* Empêche l'image de se déformer dans le cercle */
-    border: 1px solid #eeeeee; /* Optionnel : un petit liseré très discret */
+ul {
+    text-align: left;
+    line-height: 1.8;
 }
