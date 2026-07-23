@@ -1,4 +1,4 @@
- body {
+body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   text-align: center;
@@ -9,15 +9,88 @@ h1 {
   color: rgb(16, 16, 80);
 }
 
-
-p {
-  font-size: 15px;
-  margin: 1px;
+/* Grille des cartes produits */
+.liste-produits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 30px;
 }
 
-img {
-  margin: 17px;
-  border: 8px solid black;
+.carte {
+  width: 240px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px;
+  background-color: #fff2fb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  transition: transform 0.8s, box-shadow 0.2s;
+}
+
+.carte:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Image + badges */
+.image-produit {
+  position: relative;
+  text-align: center;
+}
+
+.image-produit img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.badge {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+/* Infos produit */
+.infos {
+  padding-top: 12px;
+}
+
+.marque {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.nom {
+  font-size: 14px;
+  color: #333333;
+  margin: 6px 0;
+  min-height: 40px;
+}
+
+.prix {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* Bouton retour */
+.retour {
+  margin-top: 40px;
 }
 
 a {
@@ -30,4 +103,72 @@ a {
 
 a:hover {
   background-color: green;
+}
+
+/* Barre du haut (navigation + sac) */
+.topbar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Boutons dans les formulaires (Add to bag, Remove...) */
+.btn-add,
+.btn-remove {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-add {
+  background-color: darkblue;
+  width: 100%;
+}
+
+.btn-add:hover {
+  background-color: green;
+}
+
+.btn-remove {
+  background-color: #b00020;
+}
+
+.btn-remove:hover {
+  background-color: #7a0016;
+}
+
+/* Tableau du sac */
+.bag-table {
+  margin: 30px auto;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.bag-table th,
+.bag-table td {
+  border: 1px solid #e0e0e0;
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.bag-table .bag-name {
+  text-align: left;
+}
+
+.bag-table .total-row td {
+  font-weight: bold;
+  background-color: #fff2fb;
+}
+
+.bag-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
 }

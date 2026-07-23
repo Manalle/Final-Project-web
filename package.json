@@ -1,0 +1,13 @@
+{
+  "name": "beauty-shop",
+  "version": "1.0.0",
+  "description": "Beauty shop with a shopping bag - Node.js, Express and MySQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0"
+  }
+}
