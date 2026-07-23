@@ -47,23 +47,114 @@ async function bagCount() {
   return rows[0].n;
 }
 
-function pageStart(title, count) {
+function pageStart(title, count, active) {
+  const on = (p) => (active === p ? ' class="active"' : '');
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${esc(title)}</title>
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/style1.css">
 </head>
 <body>
-  <div class="topbar">
-    <a href="/">Home</a>
-    <a href="/bag">Shopping bag (${count})</a>
-  </div>`;
+  <header class="navbar">
+    <div class="brand-info">
+      <a href="/" class="logo-link">
+        <img src="images/logowebsite.png" alt="Glow Cosmetics Logo" class="nav-logo">
+        <span class="brand-name">Glow Cosmetics</span>
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="/"${on('home')}>Home</a>
+      <a href="/products"${on('products')}>Products</a>
+      <a href="about.html">About Us</a>
+      <a href="/bag"${on('bag')}>Bag (${count})</a>
+    </nav>
+    <div class="auth-links">
+      <a href="login.html" class="login-btn">Log In</a>
+      <a href="register.html" class="register-btn">Register</a>
+    </div>
+  </header>`;
 }
 
-const pageEnd = '</body></html>';
+const pageEnd = `
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Glow Cosmetics</h3>
+        <p>Enhancing your natural beauty, everyday.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>Email: support@glowcosmetics.com</p>
+        <p>Follow us: @glowcosmetics</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Glow Cosmetics - Final Web Development Project.</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body></html>`;
+
+// Small client script: the heart button marks a product as favorite and
+// remembers it in the browser (localStorage), so it stays filled on reload.
+const favScript = `
+  <script>
+  (function () {
+    var KEY = 'favs';
+    function get() { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+    function save(l) { localStorage.setItem(KEY, JSON.stringify(l)); }
+    function money(n) { return '$' + Number(n).toFixed(2); }
+
+    // Redessine la barre "Mes favoris" (compteur + photo + prix)
+    function renderFavorites() {
+      var favs = get();
+      var countEl = document.getElementById('fav-count');
+      var listEl = document.getElementById('fav-list');
+      if (countEl) { countEl.textContent = favs.length; }
+      if (!listEl) { return; }
+      if (favs.length === 0) {
+        listEl.innerHTML = '<p class="fav-empty">No favorites yet — tap the ♡ on a product.</p>';
+        return;
+      }
+      var html = '';
+      favs.forEach(function (id) {
+        var p = (window.PRODUCTS || []).find(function (x) { return String(x.id) === String(id); });
+        if (!p) { return; }
+        html += '<div class="fav-item">'
+          + '<img src="images/' + p.image + '" alt="">'
+          + '<div class="fav-item-info">'
+          + '<span class="fav-item-name">' + p.brand + '</span>'
+          + '<span class="fav-item-price">' + money(p.price) + '</span>'
+          + '</div></div>';
+      });
+      listEl.innerHTML = html;
+    }
+
+    document.querySelectorAll('.fav-btn').forEach(function (btn) {
+      var id = btn.getAttribute('data-id');
+      if (get().indexOf(id) !== -1) { btn.classList.add('is-fav'); btn.textContent = '♥'; }
+      btn.addEventListener('click', function () {
+        var list = get(), i = list.indexOf(id);
+        if (i !== -1) { list.splice(i, 1); btn.classList.remove('is-fav'); btn.textContent = '♡'; }
+        else { list.push(id); btn.classList.add('is-fav'); btn.textContent = '♥'; }
+        save(list);
+        renderFavorites();
+      });
+    });
+
+    renderFavorites();
+  })();
+  </script>`;
 
 // One product card, with its "Add to bag" button.
 function renderCard(p) {
@@ -74,6 +165,7 @@ function renderCard(p) {
     <div class="carte">
       <div class="image-produit">
         ${badge}
+        <button class="fav-btn" data-id="${p.Id}" aria-label="Add to favorites" title="Add to favorites">♡</button>
         <img src="images/${esc(p.Image)}" alt="${esc(p.Name)}">
       </div>
       <div class="infos">
@@ -183,11 +275,25 @@ app.get('/products', async (req, res) => {
     const [products] = await pool.query('SELECT * FROM Products ORDER BY Id');
     const count = await bagCount();
 
-    let page = pageStart('Products', count);
-    page += '<h1>Our products</h1>';
+    let page = pageStart('Products', count, 'products');
+    page += `<section class="shop-header">
+      <p class="breadcrumb">Makeup › All Products</p>
+      <h1>Our Products</h1>
+      <p class="section-subtitle">Discover our full collection of clean, cruelty-free beauty.</p>
+      <p class="results-count">${products.length} products</p>
+    </section>`;
+    page += `<section class="favorites-bar" id="favorites-bar">
+      <h2>My Favorites (<span id="fav-count">0</span>)</h2>
+      <div id="fav-list" class="fav-list"></div>
+    </section>`;
     page += '<div class="liste-produits">';
     products.forEach(p => { page += renderCard(p); });
     page += '</div>';
+    const productData = products.map(p => ({
+      id: p.Id, brand: p.Brand, name: p.Name, price: Number(p.Price), image: p.Image
+    }));
+    page += `<script>window.PRODUCTS = ${JSON.stringify(productData).replace(/</g, '\\u003c')};</script>`;
+    page += favScript;
     page += pageEnd;
 
     res.send(page);
@@ -240,7 +346,7 @@ app.post('/cart/clear', async (req, res) => {
 app.get('/bag', async (req, res) => {
   try {
     const [items] = await pool.query(
-      `SELECT p.Id, p.Brand, p.Name, p.Price, c.Quantity,
+      `SELECT p.Id, p.Brand, p.Name, p.Price, p.Image, c.Quantity,
               (p.Price * c.Quantity) AS Subtotal
        FROM Cart c
        JOIN Products p ON p.Id = c.ProductId
@@ -248,7 +354,7 @@ app.get('/bag', async (req, res) => {
     );
     const count = await bagCount();
 
-    let page = pageStart('Shopping bag', count);
+    let page = pageStart('Shopping bag', count, 'bag');
     page += '<h1>Shopping bag</h1>';
 
     if (items.length === 0) {
@@ -261,7 +367,10 @@ app.get('/bag', async (req, res) => {
       items.forEach(it => {
         total += Number(it.Subtotal);
         page += `<tr>
-          <td class="bag-name">${esc(it.Brand)} — ${esc(it.Name)}</td>
+          <td class="bag-name">
+            <img class="bag-thumb" src="images/${esc(it.Image)}" alt="${esc(it.Name)}">
+            <span>${esc(it.Brand)} — ${esc(it.Name)}</span>
+          </td>
           <td>${money(it.Price)}</td>
           <td>${it.Quantity}</td>
           <td>${money(it.Subtotal)}</td>

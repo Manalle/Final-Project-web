@@ -45,7 +45,13 @@ INSERT INTO Products (Brand, Name, Price, Image, Badge) VALUES
   ('PATRICK TA',                  'Major Headlines Double-Take Creme & Powder Blush',   25.00, 'blush.jpg',       NULL),
   ('Touchland',                   'Power Mist Hydrating Hand Sanitizer',                12.00, 'sanitizer.jpg',   'LIMITED EDITION'),
   ('Rare Beauty by Selena Gomez', 'Mini Soft Pinch Liquid Blush',                       16.00, 'liquidblush.jpg', NULL),
-  ('HUDA BEAUTY',                 'Lip Contour 12-Hour Wear',                           25.00, 'lipcontour.jpg',  NULL);
+  ('HUDA BEAUTY',                 'Lip Contour 12-Hour Wear',                           25.00, 'lipcontour.jpg',  NULL),
+  ('Dior',                        'Lip Glow Oil Hydrating High-Shine Gloss',            42.00, 'lip_glow_oil.jpg',              'BEST SELLER'),
+  ('Yves Saint Laurent',          'Eyeshadow Palette',                                  55.00, 'yvesSaintLaurent_EyesShadow.jpg', NULL),
+  ('Danessa Myricks',             'Flashes Lash-Defining Volume Mascara',               29.00, 'mascara.jpg',                   'NEW'),
+  ('Half Magic',                  'Joystick Buildable Cream Blush Stick',               35.00, 'joystick_blush.jpg',            NULL),
+  ('Danessa Myricks',             'Money Shot Multi-Use Illuminating Gel Highlighter',  29.00, 'money_shot_highlighter.jpg',    NULL),
+  ('Jo Malone London',            'Freesia Cologne with Rose',                          68.00, 'FreesiaColognewthRose.jpg',     NULL);
 
 -- Quick confirmation output
 SELECT '--- glow_cosmetics_db ready (users + Products + Cart) ---' AS Info;
