@@ -1,11 +1,16 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
-const path = require('path');
+const cors = require('cors');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 const PORT = 3000;
 
-// Database connection settings (shared with the team — same values on every PC)
+// ===========================================================================
+//  DATABASE CONNECTION
+//  ⚠️  Each teammate sets `password` to HER OWN local MySQL root password.
+//      (This is the only line that changes from one PC to another.)
+// ===========================================================================
 const dbConfig = {
   host: 'localhost',
   user: 'root',
@@ -15,10 +20,11 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Serve the static files: index.html, styles/, images/, ...
-app.use(express.static(__dirname));
-// Read data sent by the <form> buttons (Add to bag, Remove, ...)
-app.use(express.urlencoded({ extended: false }));
+// Middlewares ---------------------------------------------------------------
+app.use(cors());
+app.use(express.json());                          // reads JSON bodies (login/register)
+app.use(express.urlencoded({ extended: false })); // reads <form> bodies (Add to bag)
+app.use(express.static(__dirname));               // serves index.html, styles/, images/, js/, ...
 
 // Small helpers -------------------------------------------------------------
 
@@ -82,9 +88,96 @@ function renderCard(p) {
     </div>`;
 }
 
-// Routes --------------------------------------------------------------------
+// ===========================================================================
+//  AUTH ROUTES  (users table)
+// ===========================================================================
 
-// The products page, built from the database.
+// Register a new user.
+app.post('/api/register', async (req, res) => {
+  const { first_name, last_name, username, email, password, confirm_password } = req.body;
+
+  if (!first_name || !last_name || !username || !email || !password) {
+    return res.status(400).json({ error: 'All fields are required.' });
+  }
+  if (password !== confirm_password) {
+    return res.status(400).json({ error: 'Passwords do not match.' });
+  }
+
+  try {
+    const [existingUsers] = await pool.query(
+      'SELECT * FROM users WHERE username = ?', [username]
+    );
+    if (existingUsers.length > 0) {
+      return res.status(400).json({ error: 'This username is already taken.' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query(
+      'INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)',
+      [first_name, last_name, username, email, hashedPassword]
+    );
+
+    res.status(201).json({ message: 'Registration successful!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred during registration.' });
+  }
+});
+
+// Log a user in.
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Please fill in all fields.' });
+  }
+
+  try {
+    const [users] = await pool.query(
+      'SELECT * FROM users WHERE username = ? OR email = ?', [username, username]
+    );
+    if (users.length === 0) {
+      return res.status(400).json({ error: 'Incorrect username or password.' });
+    }
+
+    const user = users[0];
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Incorrect username or password.' });
+    }
+
+    res.status(200).json({
+      message: 'Login successful!',
+      user: {
+        id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        username: user.username,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error during login.' });
+  }
+});
+
+// Products as JSON (kept for compatibility with the front-end API).
+app.get('/api/products', async (req, res) => {
+  try {
+    const [products] = await pool.query('SELECT * FROM Products ORDER BY Id');
+    res.status(200).json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching products.' });
+  }
+});
+
+// ===========================================================================
+//  SHOP ROUTES  (Products + Cart tables)
+// ===========================================================================
+
+// The products page, built from the database (with the "Add to bag" button).
 app.get('/products', async (req, res) => {
   try {
     const [products] = await pool.query('SELECT * FROM Products ORDER BY Id');
@@ -203,5 +296,5 @@ app.get('/bag', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Beauty shop running at http://localhost:${PORT}`);
+  console.log(`Glow Cosmetics running at http://localhost:${PORT}`);
 });

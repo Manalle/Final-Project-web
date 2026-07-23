@@ -1,13 +1,26 @@
--- Shared database for the whole project (same name as the team's base)
+-- ===========================================================================
+--  Shared database for the whole project: Glow Cosmetics
+--  Run once:  mysql -u root -proot < setup.sql
+-- ===========================================================================
 CREATE DATABASE IF NOT EXISTS glow_cosmetics_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE glow_cosmetics_db;
 
--- Only drop MY own tables, so the team's `users` / `products` tables (if present)
--- are never touched. Cart is dropped first because it points to Products.
+-- Users (login / register). Kept as-is if it already exists, so registered
+-- accounts are never lost when the script is run again.
+CREATE TABLE IF NOT EXISTS users (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  first_name  VARCHAR(50)  NOT NULL,
+  last_name   VARCHAR(50)  NOT NULL,
+  username    VARCHAR(50)  NOT NULL UNIQUE,
+  email       VARCHAR(100) NOT NULL,
+  password    VARCHAR(255) NOT NULL,
+  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Shop tables. Recreated fresh each run (drop Cart first because of the FK).
 DROP TABLE IF EXISTS Cart;
 DROP TABLE IF EXISTS Products;
 
--- All the products shown on the shop page
 CREATE TABLE Products (
   Id     INT AUTO_INCREMENT PRIMARY KEY,
   Brand  VARCHAR(80)   NOT NULL,
@@ -18,7 +31,6 @@ CREATE TABLE Products (
   CONSTRAINT chk_price CHECK (Price >= 0)
 );
 
--- The shopping bag. One row per product, Quantity says how many.
 CREATE TABLE Cart (
   Id        INT AUTO_INCREMENT PRIMARY KEY,
   ProductId INT NOT NULL UNIQUE,
@@ -36,6 +48,6 @@ INSERT INTO Products (Brand, Name, Price, Image, Badge) VALUES
   ('HUDA BEAUTY',                 'Lip Contour 12-Hour Wear',                           25.00, 'lipcontour.jpg',  NULL);
 
 -- Quick confirmation output
-SELECT '--- Tables Products & Cart ready in glow_cosmetics_db ---' AS Info;
+SELECT '--- glow_cosmetics_db ready (users + Products + Cart) ---' AS Info;
 SHOW TABLES;
 SELECT * FROM Products;

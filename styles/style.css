@@ -1,5 +1,7 @@
+/* ==========================================================================
+   1. STYLES DE BASE (Reset & Variables globales)
+   ========================================================================== */
 body {
-
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     margin: 0;
@@ -7,51 +9,166 @@ body {
     color: #111111;
 }
 
-p:first-of-type {
+/* ==========================================================================
+   2. BARRE DE NAVIGATION (Header)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 60px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #eeeeee; 
+    border-bottom: 1px solid #eeeeee;
 }
 
-
-p:first-of-type strong {
-    font-size: 18px;
-    margin-right: 50px; 
+/* Nom de la marque */
+.brand-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111111;
+    letter-spacing: 1px;
 }
 
-
-p:first-of-type a {
+/* Liens du Menu principal */
+.nav-links a {
     text-decoration: none;
     color: #555555;
-    margin-right: 20px;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.2s ease;
 }
 
-p:first-of-type a:hover {
-    color: #b85c5c;
+.nav-links a:hover,
+.nav-links a.active {
+    color: #b83b30;
+    font-weight: bold;
 }
 
-img {
-    float: right;
-    width: 380px;
-    margin-left: 40px;
+/* Boutons d'Authentification (Log In & Register) */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
+.login-btn {
+    text-decoration: none;
+    color: #111111;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.login-btn:hover {
+    color: #b83b30;
+}
+
+.register-btn {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #111111;
+    padding: 9px 18px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.register-btn:hover {
+    background-color: #b83b30;
+}
+
+/* ==========================================================================
+   3. SECTION PRINCIPALE (Hero Section : Texte à Gauche / Image à Droite)
+   ========================================================================== */
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    /* Involontairement ou selon la structure HTML, ceci garantit que le bloc image est à droite */
+    flex-direction: row-reverse; 
+}
+
+/* Colonne Droite : L'Image de Huda Beauty */
+.hero-image-wrapper {
+    flex: 0 0 380px; /* Conserve une largeur fixe de 380px */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Colonne Gauche : Titre et Description */
+.hero-content {
+    flex: 1;
+}
 
 h1 {
     color: #111111;
-    text-align: left;
     font-size: 38px;
-    margin-top: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-p {
+.description {
     font-size: 16px;
-    text-align: left;
     color: #444444;
     line-height: 1.6;
-    max-width: 500px; 
+    margin-bottom: 30px;
+    max-width: 550px;
+    text-align: left;
 }
 
+/* ==========================================================================
+   4. BOUTONS D'ACTION (Shop Now & Download Catalog)
+   ========================================================================== */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.shop-btn {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #b83b30;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+.shop-btn:hover {
+    background-color: #111111;
+}
+
+.download-btn {
+    text-decoration: none;
+    color: #111111;
+    background-color: transparent;
+    border: 1px solid #111111;
+    padding: 11px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   5. RÈGLES GÉNÉRALES
+   ========================================================================== */
 h2 {
     color: #111111;
     text-align: left;
@@ -64,16 +181,128 @@ ul {
     line-height: 1.8;
 }
 
-.shop-btn {
-    text-decoration: none;
-    color: #ffffff ;
-    background-color: #b83b30;
-    padding: 12px 24px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-top: 20px;
+/* ==========================================================================
+   6. FORMULAIRES D'AUTHENTIFICATION (Register & Login)
+   ========================================================================== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
 }
 
-.shop-btn:hover {
+.auth-card {
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.auth-card h2 {
+    font-size: 28px;
+    margin: 0 0 5px 0;
+    padding-top: 0;
+    text-align: center;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #666666;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Ligne double champ (First Name + Last Name) */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #111111;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #b83b30;
+}
+
+.password-hint {
+    font-size: 11px;
+    color: #777777;
+    margin-top: 4px;
+}
+
+/* Message d'erreur */
+.error-msg {
+    background-color: #fde8e8;
+    color: #b83b30;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #f8b4b4;
+    text-align: center;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+    width: 100%;
+    background-color: #b83b30;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
     background-color: #111111;
+}
+
+/* Pied du formulaire */
+.auth-footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.auth-footer a {
+    color: #b83b30;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+.login-btn.active-btn {
+    color: #b83b30;
+    font-weight: bold;
 }
