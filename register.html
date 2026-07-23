@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Glow Cosmetics</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="js/register.js"></script>
+</head>
+<body>
+
+    
+    <header class="navbar">
+        <div class="brand-info">
+            <span class="brand-name">Glow Cosmetics</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a> 
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+        </nav>
+
+        <div class="auth-links">
+            <a href="login.html" class="login-btn">Log In</a>
+            <a href="register.html" class="register-btn active-btn">Register</a>
+        </div>
+    </header>
+
+  
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Create an Account</h2>
+            <p class="auth-subtitle">Join Glow Cosmetics today</p>
+
+            
+            <div id="error-message" class="error-msg" style="display: none;"></div>
+
+            <form id="register-form" action="#" method="POST">
+                
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first_name" placeholder="Huda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last_name" placeholder="Kattan" required>
+                    </div>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="hudabeauty" required>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="huda@glowcosmetics.com" required>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <small class="password-hint">Min 8 chars, 1 uppercase, 1 number, 1 special char.</small>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required>
+                </div>
+
+                
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+
+            <p class="auth-footer">
+                Already have an account? <a href="login.html">Log In</a>
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>

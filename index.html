@@ -6,30 +6,54 @@
     <title>Glow Cosmetics</title>
     
     <link rel="stylesheet" href="styles/style.css">
+    <script src="js/main.js"></script>
 </head>
 
 <body>
 
-    <p>
-        <strong>Glow Cosmetics</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="index.html">Home</a> 
-        <a href="products.html">Products</a>
-    </p>
+    <!-- Barre de Navigation -->
+    <header class="navbar">
+        <div class="brand-info">
+            <span class="brand-name">Glow Cosmetics</span>
+        </div>
 
-    <img src="images/Hudaimage1.jpg" alt="Glow Cosmetics Logo" width="150">
+        <nav class="nav-links">
+            <a href="index.html" class="active">Home</a> 
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+        </nav>
 
-    <h1>Welcome to Glow Cosmetics</h1>
+        <div class="auth-links">
+            <a href="login.html" class="login-btn">Log In</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </header>
 
-    <p>
-        Glow Cosmetics offers professional beauty products created for everyone. 
-        Our collection contains organic, high-quality, and cruelty-free makeup. 
-        These products are made mainly to enhance your natural beauty and boost your confidence.
-    </p>
+    <!-- Contenu Principal : Image à Gauche, Texte à Droite -->
+    <main class="hero-container">
+        
+        <!-- Image à Gauche -->
+        <div class="hero-image-wrapper">
+            <img src="images/Hudaimage1.jpg" alt="Glow Cosmetics Beauty Showcase" class="hero-img">
+        </div>
 
-    <p>
-        <a href="products.html" class="shop-btn">Shop Now</a>
-    </p>
+        <!-- Texte et Boutons à Droite -->
+        <div class="hero-content">
+            <h1>Welcome to Glow Cosmetics</h1>
 
+            <p class="description">
+                Glow Cosmetics offers professional beauty products created for everyone. 
+                Our collection contains organic, high-quality, and cruelty-free makeup. 
+                These products are made mainly to enhance your natural beauty and boost your confidence.
+            </p>
+
+            <div class="action-buttons">
+                <a href="products.html" class="shop-btn">Shop Now</a>
+                <a href="images/catalog_makeuppdf.pdf" download class="download-btn">Download Catalog</a>
+            </div>
+        </div>
+
+    </main>
 
 </body>
 </html>

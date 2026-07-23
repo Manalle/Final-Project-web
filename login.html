@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Glow Cosmetics</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="js/login.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="brand-info">
+            <span class="brand-name">Glow Cosmetics</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a> 
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+        </nav>
+
+        <div class="auth-links">
+            <a href="login.html" class="login-btn active-btn">Log In</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </header>
+
+    <!-- Content: Login Form -->
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Welcome Back</h2>
+            <p class="auth-subtitle">Log in to your Glow Cosmetics account</p>
+
+            <!-- Message d'erreur dynamique (Sera géré plus tard avec JS/Backend) -->
+            <div id="error-message" class="error-msg" style="display: none;"></div>
+
+            <form id="login-form" action="#" method="POST">
+                
+                <!-- Username or Email -->
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account? <a href="register.html">Register here</a>
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>
