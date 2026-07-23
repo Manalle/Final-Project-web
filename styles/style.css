@@ -1,33 +1,80 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  text-align: center;
-  margin: 40px;
+
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 30px 60px; 
+    color: #111111;
 }
 
-h1 {
-  color: rgb(16, 16, 80);
+p:first-of-type {
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee; 
 }
 
 
-p {
-  font-size: 15px;
-  margin: 1px;
+p:first-of-type strong {
+    font-size: 18px;
+    margin-right: 50px; 
+}
+
+
+p:first-of-type a {
+    text-decoration: none;
+    color: #555555;
+    margin-right: 20px;
+}
+
+p:first-of-type a:hover {
+    color: #b85c5c;
 }
 
 img {
-  margin: 17px;
-  border: 8px solid black;
+    float: right;
+    width: 380px;
+    margin-left: 40px;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-  background-color: darkblue;
-  padding: 10px 20px;
-  border-radius: 5px;
+
+h1 {
+    color: #111111;
+    text-align: left;
+    font-size: 38px;
+    margin-top: 20px;
 }
 
-a:hover {
-  background-color: green;
+p {
+    font-size: 16px;
+    text-align: left;
+    color: #444444;
+    line-height: 1.6;
+    max-width: 500px; 
 }
+
+h2 {
+    color: #111111;
+    text-align: left;
+    clear: both;
+    padding-top: 40px;
+}
+
+ul {
+    text-align: left;
+    line-height: 1.8;
+}
+
+.shop-btn {
+    text-decoration: none;
+    color: #ffffff ;
+    background-color: #b83b30;
+    padding: 12px 24px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.shop-btn:hover {
+    background-color: #111111;
+}
+>>>>>>> origin/Manal
