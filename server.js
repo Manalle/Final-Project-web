@@ -17,7 +17,7 @@ app.use(express.static('.')); // Serves static files (HTML, CSS, JS, images)
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',      
-    password: 'root',  
+    password: 'Miss.Nelma200407@',  
     database: 'glow_cosmetics_db'
 });
 
