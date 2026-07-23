@@ -11,7 +11,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('.')); // Serves static files (HTML, CSS, JS, images)
+app.use(express.static('.')); 
 
 
 const db = mysql.createConnection({

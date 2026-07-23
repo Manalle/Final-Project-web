@@ -3,57 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glow Cosmetics</title>
-    
+    <title>Glow Cosmetics - Home</title>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="js/main.js"></script>
 </head>
-
 <body>
 
-    <!-- Barre de Navigation -->
-    <header class="navbar">
-        <div class="brand-info">
+    
+<header class="navbar">
+    <div class="brand-info">
+        <a href="index.html" class="logo-link">
+            <img src="images/logowebsite.png" alt="Glow Cosmetics Logo" class="nav-logo">
             <span class="brand-name">Glow Cosmetics</span>
-        </div>
+        </a>
+    </div>
 
-        <nav class="nav-links">
-            <a href="index.html" class="active">Home</a> 
-            <a href="products.html">Products</a>
-            <a href="about.html">About Us</a>
-        </nav>
+    <nav class="nav-links">
+        <a href="index.html" class="active">Home</a> 
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+    </nav>
 
-        <div class="auth-links">
-            <a href="login.html" class="login-btn">Log In</a>
-            <a href="register.html" class="register-btn">Register</a>
-        </div>
-    </header>
+    <div class="auth-links">
+        <a href="login.html" class="login-btn">Log In</a>
+        <a href="register.html" class="register-btn">Register</a>
+    </div>
+</header>
 
-    <!-- Contenu Principal : Image à Gauche, Texte à Droite -->
+    <!-- Hero Section principal -->
     <main class="hero-container">
-        
-        <!-- Image à Gauche -->
         <div class="hero-image-wrapper">
-            <img src="images/Hudaimage1.jpg" alt="Glow Cosmetics Beauty Showcase" class="hero-img">
+            <img src="images/Hudaimage1.jpg" alt="Glow Cosmetics Showcase" class="hero-img">
         </div>
 
-        <!-- Texte et Boutons à Droite -->
         <div class="hero-content">
             <h1>Welcome to Glow Cosmetics</h1>
-
             <p class="description">
                 Glow Cosmetics offers professional beauty products created for everyone. 
-                Our collection contains organic, high-quality, and cruelty-free makeup. 
-                These products are made mainly to enhance your natural beauty and boost your confidence.
+                Our collection contains organic, high-quality, and cruelty-free makeup designed to enhance your natural beauty.
             </p>
-
             <div class="action-buttons">
                 <a href="products.html" class="shop-btn">Shop Now</a>
                 <a href="images/catalog_makeuppdf.pdf" download class="download-btn">Download Catalog</a>
             </div>
         </div>
-
     </main>
 
+    <!-- SECTION 1 : Badges d'engagements (Confiance) -->
+    <section class="trust-features">
+        <div class="feature-card">
+            <span class="feature-icon">🌿</span>
+            <h3>100% Organic</h3>
+            <p>Formulated with pure natural ingredients.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🐰</span>
+            <h3>Cruelty-Free</h3>
+            <p>Never tested on animals, 100% ethical.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">✨</span>
+            <h3>Premium Quality</h3>
+            <p>Dermatologically tested for all skin types.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🚚</span>
+            <h3>Fast Shipping</h3>
+            <p>Free delivery on orders over $50.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : Produits en Tendance (Best Sellers) -->
+    <section class="home-products-section">
+        <h2>Trending Beauty Picks</h2>
+        <p class="section-subtitle">Discover our most loved products this season</p>
+
+        <div class="products-preview-grid">
+            <div class="product-mini-card">
+                <img src="images/HudaBeauty_lipstick.jpg" alt="Matte Lipstick">
+                <div class="product-badge">Best Seller</div>
+                <h4>Huda Beauty Lipstick</h4>
+                <p class="price">$24.99</p>
+                <a href="products.html" class="mini-shop-btn">View Product</a>
+            </div>
+
+            <div class="product-mini-card">
+                <div class="product-badge">New</div>
+                <img src="images/foundation.jpg" alt="Glow Serum">
+                <h4>Glow Foundation</h4>
+                <p class="price">$38.00</p>
+                <a href="products.html" class="mini-shop-btn">View Product</a>
+            </div>
+
+            <div class="product-mini-card">
+                <img src="images/easybake.jpg" alt="Eyeshadow Palette">
+                <div class="product-badge">Best Seller</div>
+                <h4>Powder Baking</h4>
+                <p class="price">$45.50</p>
+                <a href="products.html" class="mini-shop-btn">View Product</a>
+            </div>
+
+            <div class="product-mini-card">
+                <img src="images/palette.jpg" alt="Eyeshadow Palette">
+                <h4>Eyeshadow Palette</h4>
+                <p class="price">$33.50</p>
+                <a href="products.html" class="mini-shop-btn">View Product</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3 : Bannière Promotionnelle -->
+    <section class="promo-banner">
+        <div class="promo-content">
+            <span class="promo-tag">LIMITED OFFER</span>
+            <h2>Get 20% Off Your First Order</h2>
+            <p>Sign up to our newsletter or use your new account to enjoy exclusive rewards.</p>
+            <a href="products.html" class="shop-btn">Claim Offer</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Glow Cosmetics</h3>
+                <p>Enhancing your natural beauty, everyday.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Email: support@glowcosmetics.com</p>
+                <p>Follow us: @glowcosmetics</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Glow Cosmetics - Final Web Development Project.</p>
+        </div>
+    </footer>
+
+    <!-- Script de gestion de session connecté -->
+    <script src="js/main.js"></script>
 </body>
 </html>

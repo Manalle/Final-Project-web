@@ -9,7 +9,7 @@ const PORT = 3000;
 const dbConfig = {
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: 'Miss.Nelma200407@',
   database: 'glow_cosmetics_db'
 };
 
