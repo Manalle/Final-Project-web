@@ -31,15 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (!response.ok) {
-                    // Display error if username or password is incorrect
                     showError(data.error || 'An error occurred during login.');
                 } else {
-                    // 1. Save logged-in user in local storage
                     localStorage.setItem('currentUser', JSON.stringify(data.user));
 
                     alert(`Welcome ${data.user.first_name}! Login successful.`);
                     
-                    // 2. Redirect to Home Page
                     window.location.href = 'index.html';
                 }
 

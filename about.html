@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Glow Cosmetics</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <!-- Barre de Navigation -->
     <header class="navbar">
         <div class="brand-info">
             <a href="index.html" class="logo-link">
@@ -19,7 +19,7 @@
 
         <nav class="nav-links">
             <a href="index.html">Home</a> 
-            <a href="products.html">Products</a>
+            <a href="products">Products</a>
             <a href="about.html" class="active">About Us</a>
         </nav>
 
@@ -30,7 +30,6 @@
     </header>
 
     <main class="about-container">
-        <!-- Section Présentation & Avatars de l'Équipe -->
         <section class="about-hero">
             <h1>About Glow Cosmetics</h1>
             <p class="about-description">
@@ -39,20 +38,14 @@
             </p>
 
             <div class="team-avatars">
-                <div class="avatar-card">
-                    <img src="images/avatar1.png" alt="Team Member 1" class="avatar-img">
-                    <h3>Manal OUMLIL</h3>
-                    <p>Co-Founder & Full-Stack Developer</p>
-                </div>
-                <div class="avatar-card">
-                    <img src="images/avatar2.png" alt="Team Member 2" class="avatar-img">
-                    <h3>[Prénom Binôme]</h3>
-                    <p>Co-Founder & Full-Stack Developer</p>
+                <div class="avatar-card" style="width: 320px;">
+                    <img src="images/avatar1.jpeg" alt="Founders Team" class="avatar-img">
+                    <h3>Manal OUMLIL &<br>Hortensia MFUMUMBELE</h3>
+                    <p>Co-Founders & Full-Stack Developers</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section Google Maps API -->
         <section class="map-section">
             <h2>Visit Our Flagship Store</h2>
             <p>Find us at our boutique location in Paris:</p>
@@ -65,20 +58,41 @@
                     allowfullscreen="" 
                     loading="lazy">
                 </iframe>
-            </div>
+            </div> 
         </section>
 
-        <!-- Section Infinite Scroll (Avis & Galerie supplémentaires) -->
-        <!-- Section Community Wall (Version Statique sans Scroll) -->
-<section class="infinite-scroll-section">
-    <h2>Community Showcase</h2>
-    <p class="section-subtitle">Discover our beauty community looks!</p>
-    
-    <div id="infinite-container" class="infinite-grid">
-        <!-- Les 6 cartes s'affichent proprement ici -->
-    </div>
-</section>
+        <section class="infinite-scroll-section">
+            <h2>Community Showcase</h2>
+            <p class="section-subtitle">Discover our beauty community looks!</p>
+            
+            <div id="infinite-container" class="infinite-grid">
+                
+            </div>
+        </section>
     </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Glow Cosmetics</h3>
+                <p>Enhancing your natural beauty, everyday.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="products">Products</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Email: support@glowcosmetics.com</p>
+                <p>Follow us: @glowcosmetics</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Glow Cosmetics - Final Web Development Project.</p>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>

@@ -1,12 +1,9 @@
-/* ==========================================================================
-   PALETTE — harmonisée avec la page d'accueil (Glow Cosmetics)
-   ========================================================================== */
 :root {
-  --accent:  #b83b30;   /* rouge terracotta : boutons, prix, badges, cœur */
-  --dark:    #111111;   /* presque noir : titres, texte, hover */
-  --border:  #eeeeee;   /* liseré clair */
-  --muted:   #666666;   /* texte secondaire */
-  --bg-soft: #fafafa;   /* fond très clair (total du sac, en-têtes) */
+  --accent:  #b83b30;
+  --dark:    #111111;
+  --border:  #eeeeee;
+  --muted:   #666666;
+  --bg-soft: #fafafa;
 }
 
 body {
@@ -15,9 +12,6 @@ body {
   color: var(--dark);
 }
 
-/* ==========================================================================
-   En-tête de la page boutique
-   ========================================================================== */
 .shop-header {
   text-align: center;
   margin: 10px 0 40px 0;
@@ -49,9 +43,6 @@ body {
   margin: 6px 0 0 0;
 }
 
-/* ==========================================================================
-   Barre "Mes favoris" (en haut de la page produits)
-   ========================================================================== */
 .favorites-bar {
   max-width: 900px;
   margin: 0 auto 40px auto;
@@ -116,9 +107,6 @@ body {
   margin: 0;
 }
 
-/* ==========================================================================
-   Grille des cartes produits
-   ========================================================================== */
 .liste-produits {
   display: flex;
   flex-wrap: wrap;
@@ -143,7 +131,6 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Image + badges + cœur */
 .image-produit {
   position: relative;
   text-align: center;
@@ -175,7 +162,6 @@ body {
   text-transform: uppercase;
 }
 
-/* Bouton favori (cœur) en haut à droite de l'image */
 .fav-btn {
   position: absolute;
   top: 8px;
@@ -205,7 +191,6 @@ body {
   border-color: var(--accent);
 }
 
-/* Infos produit */
 .infos {
   padding-top: 12px;
 }
@@ -224,7 +209,6 @@ body {
   min-height: 40px;
 }
 
-/* Note (étoiles) + nombre d'avis */
 .rating {
   display: flex;
   align-items: center;
@@ -237,7 +221,7 @@ body {
   display: inline-block;
   font-size: 14px;
   line-height: 1;
-  color: #dddddd;            /* étoiles vides (gris clair) */
+  color: #dddddd;
 }
 
 .stars::before {
@@ -250,7 +234,7 @@ body {
   left: 0;
   overflow: hidden;
   white-space: nowrap;
-  color: var(--dark);        /* étoiles pleines (noir) */
+  color: var(--dark);
 }
 
 .stars-fill::before {
@@ -269,10 +253,6 @@ body {
   margin: 8px 0 0 0;
 }
 
-/* ==========================================================================
-   Boutons
-   ========================================================================== */
-/* Liens-boutons (retour, "Continue shopping") — scopés pour ne PAS toucher la navbar */
 .retour {
   margin: 40px 0;
   text-align: center;
@@ -295,7 +275,6 @@ body {
   background-color: var(--dark);
 }
 
-/* Boutons de formulaire (Add to bag, Remove...) */
 .btn-add,
 .btn-remove {
   margin-top: 10px;
@@ -326,9 +305,6 @@ body {
   background-color: var(--accent);
 }
 
-/* ==========================================================================
-   Tableau du sac
-   ========================================================================== */
 .bag-table {
   margin: 30px auto;
   border-collapse: collapse;
@@ -351,7 +327,6 @@ body {
   text-align: left;
 }
 
-/* Vignette de l'article dans le sac */
 .bag-thumb {
   width: 50px;
   height: 50px;

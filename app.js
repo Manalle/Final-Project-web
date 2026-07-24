@@ -6,11 +6,7 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = 3000;
 
-// ===========================================================================
-//  DATABASE CONNECTION
-//  ⚠️  Each teammate sets `password` to HER OWN local MySQL root password.
-//      (This is the only line that changes from one PC to another.)
-// ===========================================================================
+
 const dbConfig = {
   host: 'localhost',
   user: 'root',
@@ -20,15 +16,11 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Middlewares ---------------------------------------------------------------
 app.use(cors());
-app.use(express.json());                          // reads JSON bodies (login/register)
-app.use(express.urlencoded({ extended: false })); // reads <form> bodies (Add to bag)
-app.use(express.static(__dirname));               // serves index.html, styles/, images/, js/, ...
+app.use(express.json());                          
+app.use(express.urlencoded({ extended: false })); 
+app.use(express.static(__dirname));               
 
-// Small helpers -------------------------------------------------------------
-
-// Escape text so product names with & or < don't break the HTML.
 function esc(text) {
   return String(text)
     .replace(/&/g, '&amp;')
@@ -41,14 +33,12 @@ function money(value) {
   return '$' + Number(value).toFixed(2);
 }
 
-// Format the review count like Sephora: 17600 -> "17.6K", 326 -> "326".
 function reviewCount(n) {
   n = Number(n);
   if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
   return String(n);
 }
 
-// How many items are currently in the bag (used in the top bar).
 async function bagCount() {
   const [rows] = await pool.query('SELECT COALESCE(SUM(Quantity), 0) AS n FROM Cart');
   return rows[0].n;
@@ -112,8 +102,7 @@ const pageEnd = `
   <script src="js/main.js"></script>
 </body></html>`;
 
-// Small client script: the heart button marks a product as favorite and
-// remembers it in the browser (localStorage), so it stays filled on reload.
+
 const favScript = `
   <script>
   (function () {
@@ -163,7 +152,6 @@ const favScript = `
   })();
   </script>`;
 
-// One product card, with its "Add to bag" button.
 function renderCard(p) {
   const badge = p.Badge
     ? `<div class="badges"><span class="badge">${esc(p.Badge)}</span></div>`
@@ -194,11 +182,9 @@ function renderCard(p) {
     </div>`;
 }
 
-// ===========================================================================
-//  AUTH ROUTES  (users table)
-// ===========================================================================
 
-// Register a new user.
+
+
 app.post('/api/register', async (req, res) => {
   const { first_name, last_name, username, email, password, confirm_password } = req.body;
 
@@ -230,7 +216,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Log a user in.
+
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -268,7 +254,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Products as JSON (kept for compatibility with the front-end API).
+
 app.get('/api/products', async (req, res) => {
   try {
     const [products] = await pool.query('SELECT * FROM Products ORDER BY Id');
@@ -279,11 +265,8 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
-// ===========================================================================
-//  SHOP ROUTES  (Products + Cart tables)
-// ===========================================================================
 
-// The products page, built from the database (with the "Add to bag" button).
+
 app.get('/products', async (req, res) => {
   try {
     const [products] = await pool.query('SELECT * FROM Products ORDER BY Id');
@@ -316,7 +299,7 @@ app.get('/products', async (req, res) => {
   }
 });
 
-// Add a product to the bag (or +1 if it is already there).
+
 app.post('/cart/add', async (req, res) => {
   try {
     const id = parseInt(req.body.id, 10);
@@ -333,7 +316,7 @@ app.post('/cart/add', async (req, res) => {
   }
 });
 
-// Remove a product from the bag completely.
+
 app.post('/cart/remove', async (req, res) => {
   try {
     const id = parseInt(req.body.id, 10);
@@ -346,7 +329,7 @@ app.post('/cart/remove', async (req, res) => {
   }
 });
 
-// Empty the whole bag.
+
 app.post('/cart/clear', async (req, res) => {
   try {
     await pool.query('DELETE FROM Cart');
@@ -356,7 +339,7 @@ app.post('/cart/clear', async (req, res) => {
   }
 });
 
-// The shopping bag page, with the total.
+
 app.get('/bag', async (req, res) => {
   try {
     const [items] = await pool.query(

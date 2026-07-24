@@ -1,27 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('infinite-container');
 
-    // Nombre d'éléments qu'on souhaite afficher de manière fixe (ex: 6 éléments)
-    const totalItems = 6;
+    const communityImages = [
+        'images/Hudaimage2.jpg',
+        'images/Hudaimage3.jpg',   
+        'images/Hudaimage4.jpg',
+        'images/Hudaimage5.jpg',
+        'images/Hudaimage1.jpg',
+        'images/téléchargement (41).jpg'
+    ];
 
-    // Fonction pour générer les cartes de la communauté
     function renderCommunityCards() {
         if (!container) return;
 
-        for (let i = 1; i <= totalItems; i++) {
+        communityImages.forEach((imagePath, index) => {
             const card = document.createElement('div');
             card.className = 'scroll-card';
             card.innerHTML = `
-                <img src="images/Hudaimage1.jpg" alt="Look ${i}">
+                <img src="${imagePath}" alt="Look ${index + 1}">
                 <div class="scroll-card-info">
-                    <h4>Glow Look #${i}</h4>
+                    <h4>Glow Look #${index + 1}</h4>
                     <p>Shared by our beauty community ✨</p>
                 </div>
             `;
             container.appendChild(card);
-        }
+        });
     }
 
-    // Affichage fixe au chargement de la page
     renderCommunityCards();
 });
